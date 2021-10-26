@@ -1,0 +1,11 @@
+The application is decoupled into a React frontend and Django backend. 
+Follow the steps in https://www.valentinog.com/blog/drf/ to setup environment for django and react
+Use AWS authentication credits to log into AWS console if needed
+To run a server for the frontend, cd into "frontend," install dependencies, and run "npm start"
+To run a server for the backend, cd into "backend," install dependencies for django and run "pyhon manage.py runserver"
+Recommend developing in visual studio code Ide, as it has extentions for programming in both python for django and javascript for react.
+
+For React: The core functionality revolves around Mainpage.js. 
+For Django, The two sets of important files are the views.py and the models.py. The models.py represents the database objects, and the views
+acts as the controller to handle requests. Serializers.py acts as a serializer for converting python objects into json format for requests. 
+The Django browser url will also act as a "Postman" like api.

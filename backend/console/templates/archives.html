@@ -1,0 +1,164 @@
+{% block content %}
+	{% if user.is_authenticated %}
+  		Hi {{ user.username }}!
+	{% else %}
+  		<p>You are not logged in</p>
+  		<a href="{% url 'console:login' %}">login</a>
+	{% endif %}
+{% endblock %}
+
+
+<button type="button" name="Video Analytics" formtarget="_self">Video Analytics</button>
+<button type="button" name="Live Stream" formtarget="_self">Live Stream</button>
+<button type="button" name="Archives" formtarget="_self">Archives</button>
+<button type="button" name="Audit Trail" formtarget="_self">Audit Trail</button>
+
+<b>Currently Displayed Information:</b>
+
+
+<div>
+	<div style="height:700px; float: left; width:150px;border:10px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+		<b>Cameras:</b>
+		{% if camera_list %}
+			{% if current_camera%}
+    				<ul>
+    				{% for camera in camera_list %}	
+        			<html>
+					<style>
+   						.lnkbtn{
+        					display: block;
+        					width: 100px;
+        					background-color: none;
+        					border: 1px none;
+        					text-align: center;
+        					text-decoration: none;
+        					padding: 5px 0px 5px 0px;
+    						}
+
+    					.lnkbtn:hover{
+        					background-color: #aaa;
+    					}
+
+    					.lnkbtn:visited{
+        					color: blue;
+    					}
+
+    					.lnkbtn:active{
+        					border: 1px solid red;
+    					}
+
+					</style>
+
+					<body>
+    					<li><a href="{% url 'console:select_camera' camera.id %}" class = "lnkbtn">{{ camera }}</a></li>
+					</body>
+				</html>
+			{% endfor %}
+    		</ul>
+		{% else %}
+    		<p>No cameras are available.</p>
+		{% endif %}
+		{% endif %}
+	</div>	
+</div>
+
+
+
+<div style="height:700px; float: left; width:150px;border:10px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+
+	<b>Date:</b>
+	{% if current_camera_date_list %}
+	{% if current_date %}
+    	<ul>
+    	{% for date in current_camera_date_list %}
+        	<html>
+				<style>
+   					.lnkbtn{
+        				display: block;
+        				width: 100px;
+        				background-color: none;
+        				border: 1px none;
+        				text-align: center;
+        				text-decoration: none;
+        				padding: 5px 0px 5px 0px;
+    					}
+
+    				.lnkbtn:hover{
+        				background-color: #aaa;
+    				}
+
+    				.lnkbtn:visited{
+        				color: blue;
+    				}
+
+    				.lnkbtn:active{
+        				border: 1px solid red;
+    				}
+
+				</style>
+
+				<body>
+    					<li><a href="{% url 'console:select_date' current_camera.id date.id %}" class = "lnkbtn">{{ date }}</a></li>
+				</body>
+			</html>
+			{% endfor %}
+    	</ul>
+	{% endif %}
+	{% else %}
+   		<p>No dates are available.</p>
+	{% endif %}
+	</body>
+</div>
+
+
+<div style="height:700px; float: left; width:150px;border:10px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+
+	<b>Time:</b>
+	{% if current_date_footage_list %}
+    	<ul>
+    	{% for time in current_date_footage_list %}
+        	<html>
+				<style>
+   					.lnkbtn{
+        				display: block;
+        				width: 100px;
+        				background-color: none;
+        				border: 1px none;
+        				text-align: center;
+        				text-decoration: none;
+        				padding: 5px 0px 5px 0px;
+    					}
+
+    				.lnkbtn:hover{
+        				background-color: #aaa;
+    				}
+
+    				.lnkbtn:visited{
+        				color: blue;
+    				}
+
+    				.lnkbtn:active{
+        				border: 1px solid red;
+    				}
+
+				</style>
+
+				<body>
+    					<li><a href="{% url 'console:select_time' current_camera.id current_date.id time.id %}" class = "lnkbtn">{{ time }}</a></li>
+				</body>
+			</html>
+
+    	{% endfor %}
+    	</ul>
+	{% else %}
+   		<p>No times are available.</p>
+	{% endif %}
+	</body>
+</div>
+
+{% if selected_footage %}
+	<iframe style="width: 60%; float: left; height: 700px; overflow: hidden; border:10px solid #000;" src = "{{selected_footage.video_URL}}" width="100" height="100" scrolling="no">Iframes not supported</iframe>
+{% else %}
+	<iframe style="width: 60%; float: left; height: 700px; overflow: hidden; border:10px solid #000;" src = "https://ih0.redbubble.net/image.480359302.4326/flat,1000x1000,075,f.u1.jpg" width="100" height="100" scrolling="no">Iframes not supported</iframe>
+
+{% endif %}

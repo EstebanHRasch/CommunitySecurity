@@ -1,0 +1,14 @@
+
+<img  src="https://images-na.ssl-images-amazon.com/images/I/41IGVrgU0XL.jpg" hspace="300" alt=""  width="900" height="500"  />
+
+<b>You are viewing Camera #:</b>
+<b>{{ID}}</b>
+<b>Select an Option Below (buttons do not point to anything yet):</b>
+
+<form>
+    <button formaction="{% url 'polls:live_stream' ID %}">Live Stream</button>
+</form>
+
+<button type="button" name="Video Analytics" formtarget="_self">Video Analytics</button>
+
+<button type="button" name="Archives" formtarget="_self">Archives</button>

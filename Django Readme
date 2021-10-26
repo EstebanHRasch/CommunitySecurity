@@ -1,0 +1,7 @@
+The django files in this repository will follow a tutorial for creating polls on a website, and will be repurposed for our project. 
+Currently There is a working admin page with with login. The admin has the ability to add users.
+Currently django needs to be installed on any device that wishes to run the server.
+The admin credentials are
+username: admin
+email:    sendiordesignproject42@gmail.com
+password: Communitysecurity
